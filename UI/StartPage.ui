@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Form</string>
   </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
@@ -135,7 +135,7 @@ color: rgba(0, 0, 0, 180);</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../download.png</normaloff>../../download.png</iconset>
+      <normaloff>../Images/해커스 아이콘.png</normaloff>../Images/해커스 아이콘.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -357,6 +357,45 @@ background-color: rgb(255, 255, 255);</string>
 border-width:2px;
 border-style:solid;
 border-radius:8px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logo_btn">
+    <property name="geometry">
+     <rect>
+      <x>424</x>
+      <y>2</y>
+      <width>35</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/해커스 아이콘2.png</normaloff>../Images/해커스 아이콘2.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="logo_lbl">
+    <property name="geometry">
+     <rect>
+      <x>421</x>
+      <y>37</y>
+      <width>42</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(118, 185, 237);</string>
     </property>
     <property name="text">
      <string/>
