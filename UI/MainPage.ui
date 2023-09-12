@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
-    <height>800</height>
+    <width>1200</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,13 +17,1956 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
-     <width>1100</width>
-     <height>800</height>
+     <y>90</y>
+     <width>1200</width>
+     <height>810</height>
     </rect>
    </property>
-   <widget class="QWidget" name="page"/>
-   <widget class="QWidget" name="page_2"/>
+   <property name="currentIndex">
+    <number>2</number>
+   </property>
+   <widget class="QWidget" name="login_page">
+    <widget class="QWidget" name="widget_3" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1200</width>
+       <height>810</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>178</y>
+        <width>100</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Bold</family>
+        <pointsize>17</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>로그인</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>301</y>
+        <width>370</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(203, 203, 203);
+border-width:1px;
+border-style:solid;
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="id_line">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>308</y>
+        <width>330</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕</family>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(255, 255, 255);
+border-style:solid;
+</string>
+      </property>
+      <property name="placeholderText">
+       <string>아이디</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="login_btn">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>300</y>
+        <width>130</width>
+        <height>110</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Bold</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 62, 102);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>로그인</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="pw_line">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>367</y>
+        <width>330</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕</family>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(255, 255, 255);
+border-style:solid;
+</string>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+      <property name="placeholderText">
+       <string>패스워드</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>360</y>
+        <width>370</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(203, 203, 203);
+border-width:1px;
+border-style:solid;
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>420</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>아이디 저장</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>220</y>
+        <width>330</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>13</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>해듀윌 통합 아이디로 로그인 할 수 있습니다.</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>422</y>
+        <width>122</width>
+        <height>14</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕 Semilight</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-top-color: rgb(255, 255, 255);
+color: rgba(0, 0, 0, 230);
+border-right-color: rgb(255, 255, 255);
+border-left-color: rgb(255, 255, 255);
+border-bottom-color: rgb(0, 0, 0);
+border-style:solid;
+border-width:1px;</string>
+      </property>
+      <property name="text">
+       <string>아이디/비밀번호 찾기</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>375</x>
+        <y>467</y>
+        <width>235</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>아직 해듀윌 회원이 아니신가요?</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="join_btn">
+      <property name="geometry">
+       <rect>
+        <x>615</x>
+        <y>470</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(255, 255, 255);
+color: rgb(27, 62, 102);
+border-style:solid;
+</string>
+      </property>
+      <property name="text">
+       <string>회원가입</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="widget_4" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>635</y>
+        <width>1200</width>
+        <height>45</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-top-color: rgb(0, 0, 0);
+border-bottom-color: rgb(217, 217, 217);
+border-style:solid;
+border-width:1px;</string>
+      </property>
+      <widget class="QLabel" name="label_14">
+       <property name="geometry">
+        <rect>
+         <x>257</x>
+         <y>1</y>
+         <width>361</width>
+         <height>43</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);
+border-width:0px;</string>
+       </property>
+       <property name="text">
+        <string>회사소개 | 인재채용 | 강서 저자 모집 | 윤리경영 | 이용약관 |</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_15">
+       <property name="geometry">
+        <rect>
+         <x>615</x>
+         <y>1</y>
+         <width>101</width>
+         <height>43</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);
+color: rgb(27, 62, 102);
+border-width:0px;</string>
+       </property>
+       <property name="text">
+        <string>개인정보처리방침</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_16">
+       <property name="geometry">
+        <rect>
+         <x>720</x>
+         <y>1</y>
+         <width>260</width>
+         <height>43</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);
+border-width:0px;</string>
+       </property>
+       <property name="text">
+        <string>| 이메일 추출방지정책 | 고객센터 | 제휴 문의</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>699</y>
+        <width>140</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>티머니 둥근바람 ExtraBold</family>
+        <pointsize>22</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(27, 62, 102);</string>
+      </property>
+      <property name="text">
+       <string>haeduwill</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>232</x>
+        <y>701</y>
+        <width>140</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>티머니 둥근바람 ExtraBold</family>
+        <pointsize>22</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgba(0, 0, 0, 150);</string>
+      </property>
+      <property name="text">
+       <string>haeduwill</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_19">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>705</y>
+        <width>620</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(139, 139, 139);</string>
+      </property>
+      <property name="text">
+       <string>상호명 및 호스팅제공자 : (주) 해듀윌 | 대표이사 이승신 | e-mail : lss@haeduwill.co.kr | 원격평생교육시설신고 제 000호</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>720</y>
+        <width>620</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(139, 139, 139);</string>
+      </property>
+      <property name="text">
+       <string>본사 : 광주시 광산구 소촌로 152번길 37 광주인력개발원 2층 생산정보시스템실</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_21">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>735</y>
+        <width>620</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(139, 139, 139);</string>
+      </property>
+      <property name="text">
+       <string>사업자등록번호 123-45-67890 | 대표전화 : 1588-0620 | 개인정보 보호책임자 : 권성혁</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_22">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>750</y>
+        <width>620</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(139, 139, 139);</string>
+      </property>
+      <property name="text">
+       <string>법인등록번호 121212-2342346 | 출판사등록번호 제 01-001호 | 통신판매신고 2023-광주광산-0911 | 사업자 정보확인&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>780</y>
+        <width>620</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(139, 139, 139);</string>
+      </property>
+      <property name="text">
+       <string>Copyright ⓒ (주)해듀윌 Corp. All rights reserved.</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_27">
+      <property name="geometry">
+       <rect>
+        <x>3</x>
+        <y>3</y>
+        <width>1200</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>티머니 둥근바람 ExtraBold</family>
+        <pointsize>65</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgba(0, 0, 0, 150);</string>
+      </property>
+      <property name="text">
+       <string>haeduwill</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_26">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1200</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>티머니 둥근바람 ExtraBold</family>
+        <pointsize>65</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(27, 62, 102);</string>
+      </property>
+      <property name="text">
+       <string>haeduwill</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <zorder>label_8</zorder>
+     <zorder>label_9</zorder>
+     <zorder>id_line</zorder>
+     <zorder>login_btn</zorder>
+     <zorder>label_10</zorder>
+     <zorder>pw_line</zorder>
+     <zorder>checkBox</zorder>
+     <zorder>label_11</zorder>
+     <zorder>label_12</zorder>
+     <zorder>label_13</zorder>
+     <zorder>join_btn</zorder>
+     <zorder>widget_4</zorder>
+     <zorder>label_17</zorder>
+     <zorder>label_18</zorder>
+     <zorder>label_19</zorder>
+     <zorder>label_20</zorder>
+     <zorder>label_21</zorder>
+     <zorder>label_22</zorder>
+     <zorder>label_23</zorder>
+     <zorder>label_27</zorder>
+     <zorder>label_26</zorder>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="join_page">
+    <widget class="QWidget" name="widget_5" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1200</width>
+       <height>810</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <widget class="QLabel" name="label_28">
+      <property name="geometry">
+       <rect>
+        <x>3</x>
+        <y>3</y>
+        <width>1200</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>티머니 둥근바람 ExtraBold</family>
+        <pointsize>65</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgba(0, 0, 0, 150);</string>
+      </property>
+      <property name="text">
+       <string>haeduwill</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_29">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1200</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>티머니 둥근바람 ExtraBold</family>
+        <pointsize>65</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(27, 62, 102);</string>
+      </property>
+      <property name="text">
+       <string>haeduwill</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>325</x>
+        <y>196</y>
+        <width>90</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>17</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>회원정보</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>206</y>
+        <width>10</width>
+        <height>10</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>*</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_24">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>210</y>
+        <width>150</width>
+        <height>14</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>는 필수 입력 항목입니다.</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="widget_6" native="true">
+      <property name="geometry">
+       <rect>
+        <x>325</x>
+        <y>250</y>
+        <width>550</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(207, 207, 207);
+border-width:1px;
+border-radius:10px;
+border-style:solid;</string>
+      </property>
+      <widget class="QLabel" name="label_25">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>7</y>
+         <width>44</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);
+color: rgb(90, 90, 90);</string>
+       </property>
+       <property name="text">
+        <string>아이디</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_30">
+       <property name="geometry">
+        <rect>
+         <x>52</x>
+         <y>5</y>
+         <width>10</width>
+         <height>10</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 0);
+border-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>*</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="join_id">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>26</y>
+         <width>500</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="placeholderText">
+        <string>영문 소문자,숫자를 사용한 3~16자 </string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="widget_7" native="true">
+      <property name="geometry">
+       <rect>
+        <x>325</x>
+        <y>330</y>
+        <width>550</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(207, 207, 207);
+border-width:1px;
+border-radius:10px;
+border-style:solid;</string>
+      </property>
+      <widget class="QLabel" name="label_31">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>7</y>
+         <width>57</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);
+color: rgb(90, 90, 90);</string>
+       </property>
+       <property name="text">
+        <string>비밀번호</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_32">
+       <property name="geometry">
+        <rect>
+         <x>65</x>
+         <y>5</y>
+         <width>10</width>
+         <height>10</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 0);
+border-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>*</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="join_pw">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>26</y>
+         <width>500</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>영문 소문자,숫자,특수문자를 모두 사용한 8~16자 </string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="widget_8" native="true">
+      <property name="geometry">
+       <rect>
+        <x>325</x>
+        <y>410</y>
+        <width>550</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(207, 207, 207);
+border-width:1px;
+border-radius:10px;
+border-style:solid;</string>
+      </property>
+      <widget class="QLabel" name="label_33">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>7</y>
+         <width>87</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);
+color: rgb(90, 90, 90);</string>
+       </property>
+       <property name="text">
+        <string>비밀번호 확인</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_34">
+       <property name="geometry">
+        <rect>
+         <x>95</x>
+         <y>5</y>
+         <width>10</width>
+         <height>10</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 0);
+border-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>*</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="check_pw">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>26</y>
+         <width>500</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>비밀번호와 일치해야 합니다.</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="widget_9" native="true">
+      <property name="geometry">
+       <rect>
+        <x>325</x>
+        <y>490</y>
+        <width>550</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(207, 207, 207);
+border-width:1px;
+border-radius:10px;
+border-style:solid;</string>
+      </property>
+      <widget class="QLabel" name="label_35">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>7</y>
+         <width>35</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);
+color: rgb(90, 90, 90);</string>
+       </property>
+       <property name="text">
+        <string>이름</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_36">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>5</y>
+         <width>10</width>
+         <height>10</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 0, 0);
+border-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>*</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="join_name">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>26</y>
+         <width>500</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>G마켓 산스 TTF Medium</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Normal</enum>
+       </property>
+       <property name="placeholderText">
+        <string>실명을 입력하세요.</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="pushButton_8">
+      <property name="geometry">
+       <rect>
+        <x>615</x>
+        <y>585</y>
+        <width>260</width>
+        <height>55</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Bold</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(27, 62, 102);
+border-radius:10px;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>가입하기</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_37">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>775</y>
+        <width>1200</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Medium</family>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(139, 139, 139);</string>
+      </property>
+      <property name="text">
+       <string>Copyright ⓒ (주)해듀윌 Corp. All rights reserved.</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="back_btn">
+      <property name="geometry">
+       <rect>
+        <x>325</x>
+        <y>585</y>
+        <width>260</width>
+        <height>55</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>G마켓 산스 TTF Bold</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(27, 62, 102);
+border-radius:10px;
+color: rgb(27, 62, 102);
+border-style:solid;
+border-width:2px;</string>
+      </property>
+      <property name="text">
+       <string>뒤로가기</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page">
+    <widget class="QWidget" name="widget_10" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1200</width>
+       <height>810</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <widget class="QWidget" name="widget_11" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1200</width>
+        <height>100</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-top-color: rgb(255, 255, 255);
+border-bottom-color: rgb(200, 200, 200);
+border-width:1px;
+border-style:solid;
+</string>
+      </property>
+      <widget class="QLabel" name="label_38">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>200</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>티머니 둥근바람 ExtraBold</family>
+         <pointsize>30</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgba(0, 0, 0, 150);
+border-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>haeduwill</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_39">
+       <property name="geometry">
+        <rect>
+         <x>18</x>
+         <y>19</y>
+         <width>200</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>티머니 둥근바람 ExtraBold</family>
+         <pointsize>30</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-color: rgb(255, 255, 255);
+color: rgb(27, 62, 102);</string>
+       </property>
+       <property name="text">
+        <string>haeduwill</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_40">
+       <property name="geometry">
+        <rect>
+         <x>83</x>
+         <y>67</y>
+         <width>60</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>티머니 둥근바람 ExtraBold</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);
+color: rgb(27, 62, 102);</string>
+       </property>
+       <property name="text">
+        <string>M E T A</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QStackedWidget" name="stackedWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>100</y>
+        <width>1200</width>
+        <height>350</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="page_2">
+       <widget class="QWidget" name="widget_12" native="true">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1200</width>
+          <height>350</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(94, 188, 255);</string>
+        </property>
+        <widget class="QLabel" name="label_41">
+         <property name="geometry">
+          <rect>
+           <x>540</x>
+           <y>20</y>
+           <width>610</width>
+           <height>330</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>../Images/해듀윌 광고.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_42">
+         <property name="geometry">
+          <rect>
+           <x>669</x>
+           <y>30</y>
+           <width>70</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Bold</family>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>해듀윌</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_43">
+         <property name="geometry">
+          <rect>
+           <x>810</x>
+           <y>30</y>
+           <width>88</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Bold</family>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>성적 향상</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_44">
+         <property name="geometry">
+          <rect>
+           <x>730</x>
+           <y>30</y>
+           <width>70</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Medium</family>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>과 함께</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_45">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>30</y>
+           <width>120</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Medium</family>
+           <pointsize>16</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>한 학생 수!</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_46">
+         <property name="geometry">
+          <rect>
+           <x>73</x>
+           <y>70</y>
+           <width>227</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Medium</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>공부 시스템이 바뀌면,</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_47">
+         <property name="geometry">
+          <rect>
+           <x>300</x>
+           <y>70</y>
+           <width>180</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Bold</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>성적이 바뀝니다.</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_48">
+         <property name="geometry">
+          <rect>
+           <x>158</x>
+           <y>115</y>
+           <width>220</width>
+           <height>81</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Bold</family>
+           <pointsize>56</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>해듀윌</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_49">
+         <property name="geometry">
+          <rect>
+           <x>88</x>
+           <y>220</y>
+           <width>411</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Medium</family>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>2022년 : 21학년도 1학기 중간고사~22년도 1학기 중간고사 성적장학생 수 누적</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_50">
+         <property name="geometry">
+          <rect>
+           <x>88</x>
+           <y>240</y>
+           <width>411</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Medium</family>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>2023년 : 21학년도 1학기 중간고사~23년도 1학기 중간고사 성적장학생 수 누적</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_51">
+         <property name="geometry">
+          <rect>
+           <x>88</x>
+           <y>260</y>
+           <width>411</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Medium</family>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>22-1학기 중간고사 성적장학생 수 누적(3,499명)대비</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_52">
+         <property name="geometry">
+          <rect>
+           <x>88</x>
+           <y>280</y>
+           <width>411</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>G마켓 산스 TTF Medium</family>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>23-1학기 중간고사 성적장학생 수 누적(6,888명) 비율(96.85%)</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_3"/>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(222, 225, 230);</string>
+   </property>
+   <widget class="QPushButton" name="exit_btn">
+    <property name="geometry">
+     <rect>
+      <x>1167</x>
+      <y>3</y>
+      <width>30</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/닫기 아이콘.png</normaloff>../Images/닫기 아이콘.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>58</width>
+      <height>58</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>165</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>      해듀윌 [인강계의 ..</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>13</y>
+      <width>18</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Images/해커스 아이콘.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exit_btn2">
+    <property name="geometry">
+     <rect>
+      <x>149</x>
+      <y>12</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/닫기 아이콘2.png</normaloff>../Images/닫기 아이콘2.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exit_btn_2">
+    <property name="geometry">
+     <rect>
+      <x>1125</x>
+      <y>4</y>
+      <width>30</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style:solid;
+border-width:0px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/최대화 아이콘.png</normaloff>../Images/최대화 아이콘.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>45</width>
+      <height>45</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="hide_btn">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>5</y>
+      <width>30</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style:solid;
+border-width:0px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/최소화 아이콘.png</normaloff>../Images/최소화 아이콘.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>55</width>
+      <height>50</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>40</y>
+     <width>1200</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border-left-color: rgb(255, 255, 255);
+border-right-color: rgb(255, 255, 255);
+border-bottom-color: rgb(166, 166, 166);
+border-top-color: rgb(255, 255, 255);
+border-style:solid;
+border-width:1px;</string>
+   </property>
+   <widget class="QPushButton" name="asd">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>6</y>
+      <width>40</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/화살표(좌).png</normaloff>../Images/화살표(좌).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>75</width>
+      <height>75</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>6</y>
+      <width>40</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/화살표(우).png</normaloff>../Images/화살표(우).png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>80</width>
+      <height>80</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>7</y>
+      <width>40</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width:0px;
+border-style:solid;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/새로고침.png</normaloff>../Images/새로고침.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>165</x>
+      <y>7</y>
+      <width>885</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 243, 244);
+border-color: rgb(241, 243, 244);
+border-radius:15px;</string>
+    </property>
+    <property name="text">
+     <string>      haeduwill.co.kr/sites/home</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>173</x>
+      <y>13</y>
+      <width>21</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/자물쇠.png</normaloff>../Images/자물쇠.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>45</width>
+      <height>45</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>1012</x>
+      <y>12</y>
+      <width>31</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/별 아이콘.png</normaloff>../Images/별 아이콘.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>50</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>1055</x>
+      <y>8</y>
+      <width>30</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Images/내려받기 아이콘.png</normaloff>../Images/내려받기 아이콘.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>120</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>9</y>
+      <width>103</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(19, 115, 51);
+color: rgb(19, 115, 51);
+border-radius:15px;
+border-width:1px;</string>
+    </property>
+    <property name="text">
+     <string>    업데이트</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>1165</x>
+      <y>10</y>
+      <width>20</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(255, 255, 255, 0);
+background-color: rgba(255, 255, 255, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Images/3점(초록).png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
