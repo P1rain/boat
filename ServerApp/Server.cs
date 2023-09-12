@@ -69,6 +69,7 @@ namespace ConsoleApp1
         private const string FORMAT = "utf-8";
         private const int HEADER_LENGTH = 30;
 
+        private const string log_in = "log_in";
         private const string PASS_ENCODED = "pass";
         private const string DOT_ENCODED = ".";
 
@@ -130,40 +131,40 @@ namespace ConsoleApp1
                     break;
                 }
 
-                List<Socket> readSockets = new List<Socket>();
-                List<Socket> exceptionSockets = new List<Socket>();
-
                 try
                 {
+                    List<Socket> readSockets = new List<Socket>();
+                    List<Socket> exceptionSockets = new List<Socket>();
+
                     Socket.Select(socketsList, readSockets, null, 100000);
+
+                    foreach (Socket notifiedSocket in readSockets)
+                    {
+                        if (notifiedSocket == serverSocket)
+                        {
+                            Socket clientSocket = serverSocket.Accept();
+                            socketsList.Add(clientSocket);
+                        }
+                        else
+                        {
+                            string message = ReceiveMessage(notifiedSocket);
+
+                            if (message == null)
+                            {
+                                socketsList.Remove(notifiedSocket);
+                            }
+                        }
+                    }
+
+                    foreach (Socket exceptionSocket in exceptionSockets)
+                    {
+                        socketsList.Remove(exceptionSocket);
+                        clients.Remove(exceptionSocket);
+                    }
                 }
                 catch (Exception)
                 {
                     continue;
-                }
-
-                foreach (Socket notifiedSocket in readSockets)
-                {
-                    if (notifiedSocket == serverSocket)
-                    {
-                        Socket clientSocket = serverSocket.Accept();
-                        socketsList.Add(clientSocket);
-                    }
-                    else
-                    {
-                        string message = ReceiveMessage(notifiedSocket);
-
-                        if (message == null)
-                        {
-                            socketsList.Remove(notifiedSocket);
-                        }
-                    }
-                }
-
-                foreach (Socket exceptionSocket in exceptionSockets)
-                {
-                    socketsList.Remove(exceptionSocket);
-                    clients.Remove(exceptionSocket);
                 }
             }
         }
@@ -193,6 +194,7 @@ namespace ConsoleApp1
             try
             {
                 bytesRead = clientSocket.Receive(recvMessageBytes);
+                Console.WriteLine("start");
             }
             catch (SocketException)
             {
@@ -210,6 +212,7 @@ namespace ConsoleApp1
             Console.WriteLine($"Server RECEIVED: ({requestHeader},{requestData})");
             Console.WriteLine(requestHeader);
             Console.WriteLine(requestHeader.GetType());
+
             return recvMessage;
         }
     }
