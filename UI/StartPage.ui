@@ -328,9 +328,9 @@ background-color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>1550</x>
-      <y>3</y>
+      <y>2</y>
       <width>370</width>
-      <height>33</height>
+      <height>35</height>
      </rect>
     </property>
     <property name="text">
