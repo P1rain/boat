@@ -21,7 +21,9 @@ class Main(QDialog):
         self.window_option()
         self.object_1 = object_1
         self.object_2 = object_2
-
+        self.sleep_count = 0
+        self.close_eyes_count = 0
+        self.face_code = 0
     def window_option(self):
         """프로그램 초기 설정 이벤트 함수"""
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
@@ -115,7 +117,7 @@ class Main(QDialog):
         self.cap = cv2.VideoCapture(0)
         self.cap.set(3, 640)
         self.cap.set(4, 480)
-        self.close_eyes_count = 0
+
         self.lastsave = 0
         self.frame = None
 
@@ -156,7 +158,11 @@ class Main(QDialog):
 
         # 추가: 얼굴이 검출되지 않은 경우
         if len(faces) == 0:
-            self.handle_no_face()
+            if self.face_code != 1:
+                self.handle_no_face()
+                self.face_code = 1
+        elif len(faces) > 0 and self.face_code != 0:
+            self.face_code = 0
 
         for face in faces:
             face_landmarks = self.dlib_facelandmark(gray, face)
@@ -191,17 +197,31 @@ class Main(QDialog):
             right_ear = self.calculate_EAR(rightEye)
             EAR = (left_ear + right_ear) / 2
             EAR = round(EAR, 2)
+            if self.sleep_count == 3:
+                # 타이머 정지
+                self.webcam_timer.stop()
+                # 웹캠 종료
+                self.cap.release()
+                # todo: 강의 종료 메인화면으로
+                self.sleep_count = 0  # 강의내 세번째 경고를 세번 받으면 강의 종료
 
             if EAR < 0.19:
                 self.close_eyes()
                 print(f'close count : {self.close_eyes_count}')  # 수정된 부분
-                if self.close_eyes_count >= 15: # 눈을 일정시간 이상 감고있으면
-                    # todo:
+                if self.close_eyes_count == 10:  # 첫번째 알람
+                    # todo: 알람 울림
+                    # self.media_player.stop()
+                    print("1번 알람")
+                elif self.close_eyes_count == 20:  # 두번째 알람
+                    print("2번 알람")
+                elif self.close_eyes_count >= 30:  # 세번째 알람
                     self.media_player.stop()
-                    print("강의 멈춤")
+                    print("3번 알람 강의 멈춤 -> 서버에 회원,졸음,시간 보내서 db에저장")
+                    self.sleep_count += 1
+                    self.close_eyes_count = 0
             else:
                 self.media_player.play()
-                print("강의 시작")
+                print("강의 재시작")
         # BGR에서 RGB로 색상 순서 변경
         rgb_frame = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
 
@@ -212,15 +232,10 @@ class Main(QDialog):
         p = convertToQtFormat.scaled(640, 480, aspectRatioMode=True)
         self.webcam_lbl.setPixmap(QPixmap.fromImage(p))
 
-    # 추가: 얼굴을 검출하지 못한 경우 호출될 메서드
+    # 얼굴을 검출하지 못한 경우 호출될 메서드
     def handle_no_face(self):
-        """
-        todo: 사용자가 인식되지 않으면 강의 멈추기
-        :return:
-        """
         self.media_player.stop()
-        print("강의 멈춤")
-
+        print("강의 멈춤 -> 서버에 회원,자리비움,시간 보내서 db에저장 ")
 
     # ============================================ 마이 페이지 ============================================== #
     def go_my_page(self):
