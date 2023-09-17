@@ -1,9 +1,16 @@
-from PyQt5.QtGui import QPixmap, QIcon
+import cv2
+import dlib
+from PyQt5.QtGui import QPixmap, QIcon, QImage
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QApplication
+from PyQt5.QtWidgets import QDialog, QVBoxLayout, QApplication, QWidget, QLabel
 from PyQt5.uic import loadUi
-from PyQt5.QtCore import Qt, QUrl
+from PyQt5.QtCore import Qt, QUrl, QTimer
+import time
+
+from scipy.spatial import distance
+
+from Source.cam.webcam import WebCam
 
 
 class Main(QDialog):
@@ -34,7 +41,6 @@ class Main(QDialog):
 
         # 동영상 파일 경로
         self.video_url_list = ["../../Movie/Korean.wmv", "../../Movie/Math.wmv", "../../Movie/English.wmv"]
-
 
     def btn_event(self):
         """버튼 클릭 이벤트 함수"""
@@ -95,16 +101,129 @@ class Main(QDialog):
         """강의실 페이지에서 강의실 입장 버튼 클릭 시 이동하는 함수"""
         self.media_player.setPosition(0)
         self.stackedWidget_2.setCurrentIndex(2)
-
+        # 웹캠 띄우기
+        # webcam = WebCam(self.webcam_lbl)
+        self.webcam_start()
         video_url = QUrl.fromLocalFile(self.video_url_list[idx])
         media_content = QMediaContent(video_url)
         self.media_player.setMedia(media_content)
         self.media_player.play()
+
+    # ============================================ 웹캠 ==============================================
+    def webcam_start(self):
+        # 카메라 설정
+        self.cap = cv2.VideoCapture(0)
+        self.cap.set(3, 640)
+        self.cap.set(4, 480)
+        self.close_eyes_count = 0
+        self.lastsave = 0
+        self.frame = None
+
+        # dlib을 사용한 얼굴 검출 모델과 랜드마크 모델 초기화
+        self.hog_face_detector = dlib.get_frontal_face_detector()
+        self.dlib_facelandmark = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+        # self.dlib_facelandmark = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+
+        # QTimer를 사용하여 화면 업데이트 간격 설정
+        self.webcam_timer = QTimer(self)
+        self.webcam_timer.timeout.connect(self.update_frame)
+        self.webcam_timer.start(30)  # 30ms마다 업데이트
+
+    def calculate_EAR(self, eye):
+        A = distance.euclidean(eye[1], eye[5])
+        B = distance.euclidean(eye[2], eye[4])
+        C = distance.euclidean(eye[0], eye[3])
+        ear_aspect_ratio = (A + B) / (2.0 * C)
+        return ear_aspect_ratio
+
+    def close_eyes(self):
+        if not hasattr(self, 'close_eyes_count'):
+            self.close_eyes_count = 0
+        self.close_eyes_count += 1
+        cv2.putText(self.frame, "DROWSY", (20, 100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 0, 255), 4)
+
+        # 지연 및 카운트 관리 코드 추가
+        if time.time() - self.lastsave > 5:
+            self.lastsave = time.time()
+            self.close_eyes_count = 0
+
+    def update_frame(self):
+        _, self.frame = self.cap.read()
+        gray = cv2.cvtColor(self.frame, cv2.COLOR_BGR2GRAY)
+
+        # 얼굴 검출
+        faces = self.hog_face_detector(gray)
+
+        # 추가: 얼굴이 검출되지 않은 경우
+        if len(faces) == 0:
+            self.handle_no_face()
+
+        for face in faces:
+            face_landmarks = self.dlib_facelandmark(gray, face)
+            leftEye = []
+            rightEye = []
+
+            # 눈 주위의 랜드마크를 검출하여 눈의 모양을 추정
+            for n in range(36, 42):  # 오른쪽 눈
+                x = face_landmarks.part(n).x
+                y = face_landmarks.part(n).y
+                leftEye.append((x, y))
+                next_point = n + 1
+                if n == 41:
+                    next_point = 36
+                x2 = face_landmarks.part(next_point).x
+                y2 = face_landmarks.part(next_point).y
+                cv2.line(self.frame, (x, y), (x2, y2), (0, 255, 0), 1)
+
+            for n in range(42, 48):  # 왼쪽 눈
+                x = face_landmarks.part(n).x
+                y = face_landmarks.part(n).y
+                rightEye.append((x, y))
+                next_point = n + 1
+                if n == 47:
+                    next_point = 42
+                x2 = face_landmarks.part(next_point).x
+                y2 = face_landmarks.part(next_point).y
+                cv2.line(self.frame, (x, y), (x2, y2), (0, 255, 0), 1)
+
+            # EAR(눈 종횡비) 계산 및 눈 깜빡임 감지
+            left_ear = self.calculate_EAR(leftEye)
+            right_ear = self.calculate_EAR(rightEye)
+            EAR = (left_ear + right_ear) / 2
+            EAR = round(EAR, 2)
+
+            if EAR < 0.19:
+                self.close_eyes()
+                print(f'close count : {self.close_eyes_count}')  # 수정된 부분
+                if self.close_eyes_count >= 15: # 눈을 일정시간 이상 감고있으면
+                    # todo:
+                    self.media_player.stop()
+                    print("강의 멈춤")
+            else:
+                self.media_player.play()
+                print("강의 시작")
+        # BGR에서 RGB로 색상 순서 변경
+        rgb_frame = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
+
+        # OpenCV 프레임을 PyQt 이미지로 변환하여 표시
+        h, w, ch = rgb_frame.shape
+        bytesPerLine = ch * w
+        convertToQtFormat = QImage(rgb_frame.data, w, h, bytesPerLine, QImage.Format_RGB888)
+        p = convertToQtFormat.scaled(640, 480, aspectRatioMode=True)
+        self.webcam_lbl.setPixmap(QPixmap.fromImage(p))
+
+    # 추가: 얼굴을 검출하지 못한 경우 호출될 메서드
+    def handle_no_face(self):
+        """
+        todo: 사용자가 인식되지 않으면 강의 멈추기
+        :return:
+        """
+        self.media_player.stop()
+        print("강의 멈춤")
+
 
     # ============================================ 마이 페이지 ============================================== #
     def go_my_page(self):
         """마이 페이지 클릭 시 이동하는 함수"""
         self.media_player.stop()
         self.stackedWidget_2.setCurrentIndex(3)
-
-
