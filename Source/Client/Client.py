@@ -2,8 +2,10 @@ import socket
 from threading import *
 
 from Source.Common.JSONConverter import ObjEncoder, ObjDecoder
-from Source.Data.Data import *
-from Source.Model.Classification import Classification
+from Source.Data.class_User import User
+from Source.Data.class_Attend_Lecture import Attend_Lecture
+from Source.Data.class_Attitude import Attitude
+from Source.Data.class_Lecture import Lecture
 
 
 class ClientApp:
@@ -59,91 +61,91 @@ class ClientApp:
     def send_login_check_access(self, user_id, user_pwd):
         """로그인 데이터 서버로 전송"""
         data_msg = User(user_id, user_pwd)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.login_check
         self.fixed_volume(header_data, data_msg_str)
 
     def send_member_id_check_access(self, user_id):
         """회원가입 아이디 중복 여부 데이터 서버로 전송"""
         data_msg = User(user_id)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.member_id_check
         self.fixed_volume(header_data, data_msg_str)
 
     def send_member_join_access(self, user_id, user_pwd, user_name):
         """회원가입 데이터 서버로 전송"""
         data_msg = User(user_id, user_pwd, user_name)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.member_join
         self.fixed_volume(header_data, data_msg_str)
 
     def send_recommend_data_access(self, user_id: str):
         """마이 페이지 데이터 서버로 전송"""
         data_msg = User(user_id)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.recommend_data
         self.fixed_volume(header_data, data_msg_str)
 
     def send_recipe_all_access(self, recipe_):
         """레시피 데이터 조회 서버로 전송"""
         data_msg = recipe_
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.recipe_all
         self.fixed_volume(header_data, data_msg_str)
 
     def send_recipe_id_access(self, recipe_id):
         """레시피 아이디로 데이터 조회 서버로 전송"""
         data_msg = Recipe(recipe_id)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.recipe_id
         self.fixed_volume(header_data, data_msg_str)
 
     def send_food_id_access(self, food_id: str):
         """음식 아이디로 데이터 조회 서버로 전송"""
         data_msg = Food(food_id)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.food_id
         self.fixed_volume(header_data, data_msg_str)
 
     def send_like_check(self, user_id, recipe_id):
         """찜하기 버튼 클릭 여부 조회 서버로 전송"""
         data_msg = Like(user_id, recipe_id)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.like_check
         self.fixed_volume(header_data, data_msg_str)
 
     def send_hate_access(self, user_id, recipe_id):
         """찜한 버튼 클릭시 데이터 서버로 전송"""
         data_msg = Like(user_id, recipe_id)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.recipe_hate
         self.fixed_volume(header_data, data_msg_str)
 
     def send_like_access(self, user_id, recipe_id):
         """찜하기 버튼 클릭시 찜목록 데이터 서버로 전송"""
         data_msg = Like(user_id, recipe_id)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.recipe_like
         self.fixed_volume(header_data, data_msg_str)
 
     def send_recipe_jjim_access(self, user_id):
         """레시피 찜 목록 출력을 위해 서버로 전송"""
         data_msg = User(user_id)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.recipe_jjim
         self.fixed_volume(header_data, data_msg_str)
 
     def send_recipe_random_access(self, recipe_):
         """홈화면 켜질때 추천 레시피 출력을 위해 서버로 데이터 전송"""
         data_msg = Recipe(recipe_)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.recipe_random
         self.fixed_volume(header_data, data_msg_str)
 
     def send_random_recipe_id_access(self, random_recipe_id):
         """선호 음식 추가 다이얼로그 버튼 출력을 위해 서버로 데이터 전송"""
         data_msg = Recipe(random_recipe_id)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.rd_recipe_id
         self.fixed_volume(header_data, data_msg_str)
 
@@ -151,7 +153,7 @@ class ClientApp:
         """선호 음식 추가 다이얼로그에서 저장하기 버튼 클릭 시 서버로 레시피 아이디 리스트 전송"""
         taste_string = "|".join(recipe_id_list)
         data_msg = User(user_id=self.user_id, user_taste=taste_string)
-        data_msg_str = self.encoder.to_JSON_as_binary(data_msg)
+        data_msg_str = self.encoder.toJSON_as_binary(data_msg)
         header_data = self.prefer_food_save
         self.fixed_volume(header_data, data_msg_str)
 
