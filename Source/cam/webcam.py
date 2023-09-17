@@ -8,10 +8,12 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWid
 import sys
 
 
-class DrowsinessDetectionApp(QMainWindow):
-    def __init__(self):
+class WebCam(QMainWindow):
+    def __init__(self, webcam_label):
         super().__init__()
         self.initUI()
+        # 웹캠 띄울 라벨
+        self.webcam_label = webcam_label
 
         # 카메라 설정
         self.cap = cv2.VideoCapture(0)
@@ -23,7 +25,8 @@ class DrowsinessDetectionApp(QMainWindow):
 
         # dlib을 사용한 얼굴 검출 모델과 랜드마크 모델 초기화
         self.hog_face_detector = dlib.get_frontal_face_detector()
-        self.dlib_facelandmark = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+        self.dlib_facelandmark = dlib.shape_predictor("C:/Users/KDT114/Desktop/boat/Source/cam/shape_predictor_68_face_landmarks.dat")
+        # self.dlib_facelandmark = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
         # QTimer를 사용하여 화면 업데이트 간격 설정
         self.timer = QTimer(self)
@@ -101,13 +104,14 @@ class DrowsinessDetectionApp(QMainWindow):
                 print(f'close count : {self.close_eyes_count}')  # 수정된 부분
                 if self.close_eyes_count == 15:
                     print("Driver is sleeping")
-
+        print("웹캠띄우기 1")
         # OpenCV 프레임을 PyQt 이미지로 변환하여 표시
         h, w, ch = self.frame.shape
         bytesPerLine = ch * w
         convertToQtFormat = QImage(self.frame.data, w, h, bytesPerLine, QImage.Format_RGB888)
         p = convertToQtFormat.scaled(640, 480, aspectRatioMode=True)
-        self.label.setPixmap(QPixmap.fromImage(p))
+        self.webcam_label.setPixmap(QPixmap.fromImage(p))
+        print("웹캠띄우기 2")
 
     def keyPressEvent(self, event):
         if event.key() == 27:  # ESC 키를 누르면 창 닫기
@@ -116,7 +120,7 @@ class DrowsinessDetectionApp(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = DrowsinessDetectionApp()
+    window = WebCam()
     window.setWindowTitle("Drowsiness Detection")
     window.setGeometry(100, 100, 640, 480)
     window.show()
