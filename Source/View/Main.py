@@ -17,6 +17,7 @@ class Main(QDialog):
     def __init__(self, object_1, object_2):
         super().__init__()
         loadUi('../../UI/MainPage.ui', self)
+        self.webcam_timer = QTimer(self)
         self.btn_event()
         self.window_option()
         self.object_1 = object_1
@@ -24,6 +25,10 @@ class Main(QDialog):
         self.sleep_count = 0
         self.close_eyes_count = 0
         self.face_code = 0
+        # 강의 정지시간
+        self.current_position = 0
+        self.empty_media_content = QMediaContent()  # 빈 QMediaContent 객체 생성
+
     def window_option(self):
         """프로그램 초기 설정 이벤트 함수"""
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
@@ -54,7 +59,7 @@ class Main(QDialog):
         self.login_btn.clicked.connect(self.go_main_page)
         self.lecture_btn_1.clicked.connect(self.go_lecture_page)
         self.home_btn.clicked.connect(self.home_btn_clicked_situation)
-
+        self.webcam_timer.timeout.connect(self.update_frame)
         # 강의 버튼 리스트
         self.lec_btn_list = [self.lec_btn_1, self.lec_btn_2, self.lec_btn_3]
         for idx, btn in enumerate(self.lec_btn_list):
@@ -63,6 +68,15 @@ class Main(QDialog):
         self.logout_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
         self.mypage_btn.clicked.connect(self.go_my_page)
 
+    def page_ch(self):
+        try:
+            self.media_player.setMedia(self.empty_media_content)  # media_player의 미디어 콘텐츠를 비우기
+            # 타이머 정지
+            self.webcam_timer.stop()
+            # 웹캠 종료
+            self.cap.release()
+        except:
+            pass
     # ========================================== 타이틀 클릭 이벤트 ======================================== #
     def close_event(self):
         """홈페이지 닫기 버튼 클릭 했을 때 이벤트 함수"""
@@ -96,16 +110,16 @@ class Main(QDialog):
     # ============================================ 강의 페이지 ============================================= #
     def go_lecture_page(self):
         """강의실 버튼 클릭 시 강의 페이지로 이동하는 함수"""
-        self.media_player.stop()
+        self.page_ch()
         self.stackedWidget_2.setCurrentIndex(1)
 
     def lecture_page_show(self, idx):
         """강의실 페이지에서 강의실 입장 버튼 클릭 시 이동하는 함수"""
-        self.media_player.setPosition(0)
+        self.media_player.setPosition(self.current_position)
         self.stackedWidget_2.setCurrentIndex(2)
         # 웹캠 띄우기
-        # webcam = WebCam(self.webcam_lbl)
         self.webcam_start()
+
         video_url = QUrl.fromLocalFile(self.video_url_list[idx])
         media_content = QMediaContent(video_url)
         self.media_player.setMedia(media_content)
@@ -124,11 +138,7 @@ class Main(QDialog):
         # dlib을 사용한 얼굴 검출 모델과 랜드마크 모델 초기화
         self.hog_face_detector = dlib.get_frontal_face_detector()
         self.dlib_facelandmark = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
-        # self.dlib_facelandmark = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
-        # QTimer를 사용하여 화면 업데이트 간격 설정
-        self.webcam_timer = QTimer(self)
-        self.webcam_timer.timeout.connect(self.update_frame)
         self.webcam_timer.start(30)  # 30ms마다 업데이트
 
     def calculate_EAR(self, eye):
@@ -198,30 +208,24 @@ class Main(QDialog):
             EAR = (left_ear + right_ear) / 2
             EAR = round(EAR, 2)
             if self.sleep_count == 3:
-                # 타이머 정지
-                self.webcam_timer.stop()
-                # 웹캠 종료
-                self.cap.release()
+
+                self.page_ch()
                 # todo: 강의 종료 메인화면으로
                 self.sleep_count = 0  # 강의내 세번째 경고를 세번 받으면 강의 종료
-
             if EAR < 0.19:
                 self.close_eyes()
                 print(f'close count : {self.close_eyes_count}')  # 수정된 부분
-                if self.close_eyes_count == 10:  # 첫번째 알람
-                    # todo: 알람 울림
-                    # self.media_player.stop()
-                    print("1번 알람")
-                elif self.close_eyes_count == 20:  # 두번째 알람
-                    print("2번 알람")
-                elif self.close_eyes_count >= 30:  # 세번째 알람
-                    self.media_player.stop()
+                if self.close_eyes_count == 40:  # 첫번째 알람
+                    self.current_position = self.media_player.position()
+                    self.media_player.pause()
                     print("3번 알람 강의 멈춤 -> 서버에 회원,졸음,시간 보내서 db에저장")
                     self.sleep_count += 1
-                    self.close_eyes_count = 0
             else:
+                # 미디어를 재생
+                # print(f"강의 다시 재생 시간 {self.current_position}")
+                # self.media_player.setPosition(self.current_position)
                 self.media_player.play()
-                print("강의 재시작")
+
         # BGR에서 RGB로 색상 순서 변경
         rgb_frame = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
 
@@ -234,7 +238,7 @@ class Main(QDialog):
 
     # 얼굴을 검출하지 못한 경우 호출될 메서드
     def handle_no_face(self):
-        self.media_player.stop()
+        self.media_player.pause()
         print("강의 멈춤 -> 서버에 회원,자리비움,시간 보내서 db에저장 ")
 
     # ============================================ 마이 페이지 ============================================== #
