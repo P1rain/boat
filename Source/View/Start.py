@@ -6,6 +6,7 @@ from PyQt5.uic import loadUi
 from PyQt5.QtCore import Qt
 
 from Source.View.Main import Main
+from Source.Client.Client import ClientApp
 
 
 class Start(QWidget):
@@ -41,7 +42,7 @@ class Start(QWidget):
         """로그인 페이지 함수로 이동하는 함수"""
         self.logo_btn.show()
         self.logo_lbl.show()
-        self.main = Main(self.logo_btn, self.logo_lbl)
+        self.main = Main(self.logo_btn, self.logo_lbl, client)
         self.main.exec_()
 
     def main_page_show(self):
@@ -51,6 +52,7 @@ class Start(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    client = ClientApp()
     myWindow = Start()
     myWindow.show()
     app.exec_()

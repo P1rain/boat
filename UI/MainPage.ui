@@ -1074,7 +1074,7 @@ border-color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_8">
+     <widget class="QPushButton" name="join_request_btn">
       <property name="geometry">
        <rect>
         <x>615</x>
@@ -1467,7 +1467,7 @@ color:red;</string>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page_2">
        <widget class="QWidget" name="widget_12" native="true">
@@ -3400,9 +3400,9 @@ border-left-color: rgb(236, 236, 236);</string>
         <widget class="QLabel" name="webcam_lbl">
          <property name="geometry">
           <rect>
-           <x>870</x>
+           <x>860</x>
            <y>390</y>
-           <width>310</width>
+           <width>320</width>
            <height>260</height>
           </rect>
          </property>
@@ -3469,7 +3469,7 @@ border-width:2px;
            <x>130</x>
            <y>50</y>
            <width>940</width>
-           <height>620</height>
+           <height>650</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -3767,8 +3767,20 @@ border-left-color: rgb(236, 236, 236);</string>
             <x>250</x>
             <y>90</y>
             <width>681</width>
-            <height>161</height>
+            <height>150</height>
            </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>681</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>681</width>
+            <height>150</height>
+           </size>
           </property>
           <property name="styleSheet">
            <string notr="true">border-color: rgb(255, 255, 255);
@@ -3785,16 +3797,33 @@ border-style:solid;
              <x>0</x>
              <y>0</y>
              <width>681</width>
-             <height>161</height>
+             <height>150</height>
             </rect>
            </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+           </layout>
           </widget>
          </widget>
          <widget class="QLabel" name="label_96">
           <property name="geometry">
            <rect>
             <x>265</x>
-            <y>265</y>
+            <y>235</y>
             <width>141</width>
             <height>30</height>
            </rect>
@@ -3815,19 +3844,36 @@ border-style:solid;
          <widget class="QWidget" name="widget_19" native="true">
           <property name="geometry">
            <rect>
-            <x>270</x>
-            <y>350</y>
-            <width>640</width>
-            <height>255</height>
+            <x>236</x>
+            <y>315</y>
+            <width>702</width>
+            <height>300</height>
            </rect>
           </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+          </layout>
          </widget>
          <widget class="QWidget" name="widget_20" native="true">
           <property name="geometry">
            <rect>
-            <x>260</x>
-            <y>305</y>
-            <width>660</width>
+            <x>360</x>
+            <y>270</y>
+            <width>501</width>
             <height>45</height>
            </rect>
           </property>
