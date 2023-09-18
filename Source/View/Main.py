@@ -64,7 +64,6 @@ class Main(QDialog):
         self.lec_btn_list = [self.lec_btn_1, self.lec_btn_2, self.lec_btn_3]
         for idx, btn in enumerate(self.lec_btn_list):
             btn.clicked.connect(lambda x=None, y=idx: self.lecture_page_show(y))
-
         self.logout_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
         self.mypage_btn.clicked.connect(self.go_my_page)
 
@@ -207,8 +206,16 @@ class Main(QDialog):
             right_ear = self.calculate_EAR(rightEye)
             EAR = (left_ear + right_ear) / 2
             EAR = round(EAR, 2)
-            if self.sleep_count == 3:
 
+            position = self.media_player.position()
+            duration = self.media_player.duration()
+
+            if position >= duration:    # 강의 모두 들었을때
+                # todo: 강의 종료 이밴트들
+                # 미디어가 끝에 도달했을 때 실행할 코드를 여기에 추가
+                print("강의를 모두 수강하셨습니다")
+
+            if self.sleep_count == 3:
                 self.page_ch()
                 # todo: 강의 종료 메인화면으로
                 self.sleep_count = 0  # 강의내 세번째 경고를 세번 받으면 강의 종료
@@ -220,7 +227,7 @@ class Main(QDialog):
                     self.media_player.pause()
                     print("3번 알람 강의 멈춤 -> 서버에 회원,졸음,시간 보내서 db에저장")
                     self.sleep_count += 1
-            else:
+            elif position != duration:
                 # 미디어를 재생
                 # print(f"강의 다시 재생 시간 {self.current_position}")
                 # self.media_player.setPosition(self.current_position)
