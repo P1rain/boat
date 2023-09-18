@@ -3770,6 +3770,18 @@ border-left-color: rgb(236, 236, 236);</string>
             <height>150</height>
            </rect>
           </property>
+          <property name="minimumSize">
+           <size>
+            <width>681</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>681</width>
+            <height>150</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">border-color: rgb(255, 255, 255);
 border-style:solid;
@@ -3788,6 +3800,23 @@ border-style:solid;
              <height>150</height>
             </rect>
            </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+           </layout>
           </widget>
          </widget>
          <widget class="QLabel" name="label_96">
@@ -3837,13 +3866,6 @@ border-style:solid;
            <property name="bottomMargin">
             <number>0</number>
            </property>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-            </layout>
-           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="widget_20" native="true">
