@@ -1,219 +1,83 @@
-﻿/*using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
+﻿using System;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;*/
+using ServerApp;
 
-/*namespace ConsoleApp1
+
+class Server
 {
-    public class Server
+    private const string FORMAT = "utf-8";
+    private const int HEADER_LENGTH = 30;
+    private const int BUFFER = 4096;
+
+    // 맞춰진 형식으로 반환
+    public byte[] FixedVolume(string header, string data)
     {
-        public void Start()
-        {
-            while (true) 
-            { 
-                try
-                {
-                    string serverIP = "127.0.0.1";
-                    int serverPort = 9999;
-
-                    TcpListener listener = new TcpListener(IPAddress.Parse(serverIP), serverPort);
-                    listener.Start();
-                    Console.WriteLine("서버 대기 중...");
-
-                    using (TcpClient client = listener.AcceptTcpClient())
-                    {
-                        Console.WriteLine("클라이언트 연결됨.");
-
-                        using (NetworkStream stream = client.GetStream())
-                        {
-                            byte[] buffer = new byte[1024];
-                            int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                            string clientMessage = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                            Console.WriteLine("클라이언트 메시지: " + clientMessage);
-
-                            string responseMessage = "안녕하세요, 클라이언트!";
-                            byte[] responseData = Encoding.UTF8.GetBytes(responseMessage);
-                            stream.Write(responseData, 0, responseData.Length);
-                            Console.WriteLine("응답 전송: " + responseMessage);
-                        }
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    Console.WriteLine("오류: " + ex.Message);
-                }
-            }
-        }
+        Console.WriteLine(data.Length);
+        byte[] headerBytes = Encoding.GetEncoding(FORMAT).GetBytes(header.PadRight(HEADER_LENGTH));
+        byte[] dataBytes = Encoding.GetEncoding(FORMAT).GetBytes(data.PadRight(BUFFER - HEADER_LENGTH));
+        return CombineByteArrays(headerBytes, dataBytes);
     }
-}*/
-using System;
-using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-
-namespace ConsoleApp1
-{
-    public class Server
+    private byte[] CombineByteArrays(byte[] first, byte[] second)
     {
-        private const string HOST = "127.0.0.1";
-        private const int PORT = 9999;
-        private const int BUFFER = 50000;
-        private const string FORMAT = "utf-8";
-        private const int HEADER_LENGTH = 30;
+        byte[] result = new byte[first.Length + second.Length];
+        Buffer.BlockCopy(first, 0, result, 0, first.Length);
+        Buffer.BlockCopy(second, 0, result, first.Length, second.Length);
+        return result;
+    }
 
-        private const string log_in = "log_in";
-        private const string PASS_ENCODED = "pass";
-        private const string DOT_ENCODED = ".";
+    static void Main()
+    {
+        IPAddress ipAddress = IPAddress.Parse("10.10.20.115");
+        int port = 9999;
+        Server server = new Server();
+        TcpListener listener = new TcpListener(ipAddress, port);
+        listener.Start();
 
-        private Socket serverSocket;
-        private List<Socket> socketsList;
-        private Dictionary<Socket, string> clients;
-        private Thread threadForRun;
-        private bool runSignal;
+        Console.WriteLine("서버가 시작되었습니다. 클라이언트 연결을 대기 중...");
 
-        public Server()
+        while (true)
         {
-            serverSocket = null;
-            socketsList = new List<Socket>();
-            clients = new Dictionary<Socket, string>();
-            threadForRun = null;
-            runSignal = true;
-        }
+            TcpClient client = listener.AcceptTcpClient();
+            NetworkStream stream = client.GetStream();
 
-        public void SetConfig(string configure)
-        {
-            // 서버 설정 적용 코드
-            Console.WriteLine("서버 설정 적용됨");
-        }
+            Console.WriteLine("클라이언트 연결됨.");
 
-        public void Start()
-        {
-            if (threadForRun != null)  // 실행중이면 종료 시키기
-            {
-                return;
-            }
-
-            serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            serverSocket.Bind(new IPEndPoint(IPAddress.Parse(HOST), PORT));
-            serverSocket.Listen(5);
-            socketsList.Clear();
-            socketsList.Add(serverSocket);
-            runSignal = true;
-            threadForRun = new Thread(Run);
-            threadForRun.Start();
-        }
-
-        public void Stop()
-        {
-            runSignal = false;
-            if (threadForRun != null)
-            {
-                threadForRun.Join();
-            }
-            serverSocket.Close();
-            threadForRun = null;
-        }
-
-        private void Run()
-        {
             while (true)
             {
-                if (!runSignal)
+                byte[] data = new byte[4096];
+                int bytesRead = stream.Read(data, 0, data.Length);
+                string recvMessage = Encoding.UTF8.GetString(data, 0, bytesRead);
+                string requestHeader = recvMessage.Substring(0, 30).Trim();
+                string requestData = recvMessage.Substring(30).Trim();
+                Console.WriteLine($"Server RECEIVED: ({requestHeader},{requestData})");
+                Console.WriteLine(requestHeader);
+                Console.WriteLine(requestData);
+
+
+                if (requestHeader == "login_check")
                 {
-                    break;
+                    string response_header = "login_check";
+                    string response_data = "pass";
+                    byte[] return_result = server.FixedVolume(response_header, response_data);
+                    stream.Write(return_result, 0, return_result.Length);
+                }
+                else if (requestHeader == "check_join_id")
+                {
+                    string response_header = "check_join_id";
+                    string response_data = ".";
+                    byte[] return_result = server.FixedVolume(response_header, response_data);
+                    stream.Write(return_result, 0, return_result.Length);
                 }
 
-                try
-                {
-                    List<Socket> readSockets = new List<Socket>();
-                    List<Socket> exceptionSockets = new List<Socket>();
+                // 클라이언트에게 응답 보내기
+                /*string responseMessage = "";
+                byte[] response = Encoding.UTF8.GetBytes(responseMessage);
+                stream.Write(response, 0, response.Length);*/
 
-                    Socket.Select(socketsList, readSockets, null, 100000);
-
-                    foreach (Socket notifiedSocket in readSockets)
-                    {
-                        if (notifiedSocket == serverSocket)
-                        {
-                            Socket clientSocket = serverSocket.Accept();
-                            socketsList.Add(clientSocket);
-                        }
-                        else
-                        {
-                            string message = ReceiveMessage(notifiedSocket);
-
-                            if (message == null)
-                            {
-                                socketsList.Remove(notifiedSocket);
-                            }
-                        }
-                    }
-
-                    foreach (Socket exceptionSocket in exceptionSockets)
-                    {
-                        socketsList.Remove(exceptionSocket);
-                        clients.Remove(exceptionSocket);
-                    }
-                }
-                catch (Exception)
-                {
-                    continue;
-                }
             }
-        }
-
-        public void SendMessage(Socket clientSocket, byte[] result)
-        {
-            clientSocket.Send(result);
-        }
-
-        public byte[] FixedVolume(string header, string data)
-        {
-            string headerMsg = header.PadRight(HEADER_LENGTH);
-            string dataMsg = data.PadRight(BUFFER - HEADER_LENGTH);
-            byte[] headerBytes = Encoding.UTF8.GetBytes(headerMsg);
-            byte[] dataBytes = Encoding.UTF8.GetBytes(dataMsg);
-            byte[] result = new byte[BUFFER];
-            Array.Copy(headerBytes, 0, result, 0, HEADER_LENGTH);
-            Array.Copy(dataBytes, 0, result, HEADER_LENGTH, BUFFER - HEADER_LENGTH);
-            return result;
-        }
-
-        public string ReceiveMessage(Socket clientSocket)
-        {
-            byte[] recvMessageBytes = new byte[BUFFER];
-            int bytesRead;
-
-            try
-            {
-                bytesRead = clientSocket.Receive(recvMessageBytes);
-                Console.WriteLine("start");
-            }
-            catch (SocketException)
-            {
-                return null;
-            }
-
-            if (bytesRead == 0)
-            {
-                return null;
-            }
-
-            string recvMessage = Encoding.UTF8.GetString(recvMessageBytes, 0, bytesRead);
-            string requestHeader = recvMessage.Substring(0, HEADER_LENGTH).Trim();
-            string requestData = recvMessage.Substring(HEADER_LENGTH).Trim();
-            Console.WriteLine($"Server RECEIVED: ({requestHeader},{requestData})");
-            Console.WriteLine(requestHeader);
-            Console.WriteLine(requestHeader.GetType());
-
-            return recvMessage;
         }
     }
 }
