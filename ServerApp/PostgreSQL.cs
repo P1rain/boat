@@ -5,21 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Npgsql;
+//using System.Reflection.PortableExecutable;
+
 
 namespace MyCSharpDatabaseProject
 {
 
     public class DatabaseHelper
     {
-        static void Main()
-        {
-            DatabaseHelper dbHelper = new DatabaseHelper();
-            bool result = dbHelper.CheckEmailExists("1234");
-            bool result2 = dbHelper.login("1234", "124");
-            bool result3 = dbHelper.idrd_check("134");
-            dbHelper.attitude(1, 2);
-            //bool result = dbHelper.InsertUser()
-        }
+        //static void Main()
+        //{
+        //    DatabaseHelper dbHelper = new DatabaseHelper();
+        //    bool result = dbHelper.CheckEmailExists("1234");
+        //    bool result2 = dbHelper.login("1234", "124");
+        //    bool result3 = dbHelper.idrd_check("134");
+        //    dbHelper.attitude(1, 2);
+        //    //bool result = dbHelper.InsertUser()
+        //}
 
 
         private readonly NpgsqlConnection pgdb;
@@ -78,13 +80,13 @@ namespace MyCSharpDatabaseProject
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = pgdb;
-                    cmd.CommandText = "INSERT INTO public.\"TB_USER\" (\"USER_ID\", \"USER_PW\", \"USER_NAME\", \"USER_PARENS\") " +
+                    cmd.CommandText = "INSERT INTO public.\"TB_USER\" (\"USER_ID\", \"USER_PW\", \"USER_NAME\", \"USER_PARENT\") " +
                                       "VALUES (@ID, @Password, @name, @parent);";
                     cmd.Parameters.AddWithValue("ID", user_id);
                     cmd.Parameters.AddWithValue("Password", user_pw);
                     cmd.Parameters.AddWithValue("name", user_name);
                     cmd.Parameters.AddWithValue("parent", user_parent);
-
+                    cmd.ExecuteReader();
                     return true; // true if insertion was successful, false otherwise
                 }
             }
@@ -180,24 +182,24 @@ namespace MyCSharpDatabaseProject
         // ATTITUDE
         public void attitude(int user_code, int att_code)
         {
-            Console.WriteLine("수업태도 저장 확인");
+
             try
             {
-                Console.WriteLine("수업태도 저장 확인");
                 pgdb.Open(); // 데이터베이스 연결 열기
                 using (NpgsqlCommand cmd = new NpgsqlCommand())
                 {
+                    cmd.Connection = pgdb;
                     cmd.CommandText = "INSERT INTO public.\"TB_ATTITUDE\" (\"USER_CODE\", \"ATTITUDE_CODE\", \"ATTITUDE_TIME\") " +
                                       "VALUES (@user_code, @att_code, @att_time);";
+                    //"INSERT INTO public.\"TB_ATTITUDE\" (\"USER_CODE\", \"ATTITUDE_CODE\", \"ATTITUDE_TIME\") VALUES @user_code, @att_code, @att_time);";
                     cmd.Parameters.AddWithValue("user_code", user_code);
                     cmd.Parameters.AddWithValue("att_code", att_code);
                     string att_time = timr_return();
                     cmd.Parameters.AddWithValue("att_time", att_time);
+                    //cmd.ExecuteNonQuery();
+                    cmd.ExecuteReader();
                     Console.WriteLine($"수업태도 저장 확인{att_time}");
-                    cmd.ExecuteNonQuery(); // INSERT 쿼리 실행
 
-                    //// 변경 사항 커밋
-                    //pgdb.Commit();
                 }
 
             }
@@ -221,4 +223,3 @@ namespace MyCSharpDatabaseProject
         }
     }
 }
-
