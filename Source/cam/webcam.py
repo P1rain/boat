@@ -104,14 +104,12 @@ class WebCam(QMainWindow):
                 print(f'close count : {self.close_eyes_count}')  # 수정된 부분
                 if self.close_eyes_count == 15:
                     print("Driver is sleeping")
-        print("웹캠띄우기 1")
         # OpenCV 프레임을 PyQt 이미지로 변환하여 표시
         h, w, ch = self.frame.shape
         bytesPerLine = ch * w
         convertToQtFormat = QImage(self.frame.data, w, h, bytesPerLine, QImage.Format_RGB888)
         p = convertToQtFormat.scaled(640, 480, aspectRatioMode=True)
         self.webcam_label.setPixmap(QPixmap.fromImage(p))
-        print("웹캠띄우기 2")
 
     def keyPressEvent(self, event):
         if event.key() == 27:  # ESC 키를 누르면 창 닫기
