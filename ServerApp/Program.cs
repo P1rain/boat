@@ -10,7 +10,7 @@ namespace ConsoleApp1
 {
     public class Program
     {
-        static void Main(string[] args)
+        /*static void Main(string[] args)
         {
             DatabaseHelper dbHelper = new DatabaseHelper();
             bool result = dbHelper.CheckEmailExists("1234");
@@ -25,6 +25,6 @@ namespace ConsoleApp1
             serverThread.Start();
             Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();
-        }
+        }*/
     }
 }

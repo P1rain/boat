@@ -2,8 +2,10 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using ServerApp;
-
+using YourNamespace;
+using System.Collections.Generic;
+using MyCSharpDatabaseProject;
+using System.Text.Json.Nodes;
 
 class Server
 {
@@ -11,7 +13,6 @@ class Server
     private const int HEADER_LENGTH = 30;
     private const int BUFFER = 4096;
 
-    // 맞춰진 형식으로 반환
     public byte[] FixedVolume(string header, string data)
     {
         Console.WriteLine(data.Length);
@@ -30,6 +31,7 @@ class Server
 
     static void Main()
     {
+
         IPAddress ipAddress = IPAddress.Parse("10.10.20.115");
         int port = 9999;
         Server server = new Server();
@@ -56,26 +58,26 @@ class Server
                 Console.WriteLine(requestHeader);
                 Console.WriteLine(requestData);
 
-
+                ObjDecoder objDecoder = new ObjDecoder();
                 if (requestHeader == "login_check")
                 {
+                    object object_ = objDecoder.BinaryToObj(requestData);
+                    var dictionary_ = (Dictionary<string, object>)object_;
+                    string user_id = (string)dictionary_["user_id"];
+                    string user_pw = (string)dictionary_["user_pw"];
+                    bool result_ = DatabaseHelper.login(user_id, user_pw);
                     string response_header = "login_check";
                     string response_data = "pass";
                     byte[] return_result = server.FixedVolume(response_header, response_data);
                     stream.Write(return_result, 0, return_result.Length);
                 }
-                else if (requestHeader == "check_join_id")
+                else if (requestHeader == "member_join")
                 {
-                    string response_header = "check_join_id";
+                    string response_header = "member_join";
                     string response_data = ".";
                     byte[] return_result = server.FixedVolume(response_header, response_data);
                     stream.Write(return_result, 0, return_result.Length);
                 }
-
-                // 클라이언트에게 응답 보내기
-                /*string responseMessage = "";
-                byte[] response = Encoding.UTF8.GetBytes(responseMessage);
-                stream.Write(response, 0, response.Length);*/
 
             }
         }
